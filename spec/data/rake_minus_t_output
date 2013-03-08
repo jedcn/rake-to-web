@@ -1,0 +1,19 @@
+rake build               # Build gem into pkg/
+rake clean               # Remove any temporary products.
+rake clobber             # Remove any generated file.
+rake console[script]     # Start IRB with all runtime dependencies loaded
+rake gemcutter:release   # Release gem to Gemcutter
+rake gemspec             # Generate and validate gemspec
+rake gemspec:debug       # Display the gemspec for debugging purposes, as jeweler knows it (not from the filesystem)
+rake gemspec:generate    # Regenerate the gemspec on the filesystem
+rake gemspec:release     # Regenerate and validate gemspec, and then commits and pushes to git
+rake gemspec:validate    # Validates the gemspec on the filesystem
+rake git:release         # Tag and push release to git.
+rake install             # Build and install gem using `gem install`
+rake release             # Release gem
+rake spec                # Run RSpec code examples
+rake version             # Displays the current version
+rake version:bump:major  # Bump the major version by 1
+rake version:bump:minor  # Bump the a minor version by 1
+rake version:bump:patch  # Bump the patch version by 1
+rake version:write       # Writes out an explicit version.
