@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rake-to-web"
   gem.homepage = "https://github.com/jedcn/rake-to-web"
   gem.license = "MIT"
-  gem.summary = %Q{A Web Application that knows how to run your Rakefile}
+  gem.summary = %Q{A web application that knows how to run tasks in your Rakefile}
   gem.description = %Q{A Web Application that, when started, runs rake -T, and builds routes for each action. POSTing to a route invokes the action.}
   gem.email = "northridge@gmail.com"
   gem.authors = ["Jed Northridge"]
