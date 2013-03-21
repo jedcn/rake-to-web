@@ -6,6 +6,10 @@ task 'to-web' do
   project_root = File.expand_path File.join(__FILE__, '..', '..')
   project_views = File.join project_root, 'views'
 
+  def execute_task(task_name)
+    `rake #{task_name}`
+  end
+
   my_app = Sinatra.new do
 
     set :haml, :format => :html5
@@ -19,6 +23,11 @@ task 'to-web' do
     tasks.each do |task|
       get "/#{task.name}" do
         haml :task, :locals => { :task => task }
+      end
+
+      post "/#{task.name}" do
+        result = execute_task(task.name)
+        haml :task_result, :locals => { :result => result, :task_name => task.name }
       end
     end
   end

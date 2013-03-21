@@ -4,3 +4,5 @@
   %body
     %h1 rake-to-web
     %h2= "Task: #{task.name}"
+    %form{ :action => "/#{task.name}", :method => 'POST' }
+      %input{ :type => "submit", :value => "Execute" }
