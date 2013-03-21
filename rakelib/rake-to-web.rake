@@ -13,7 +13,7 @@ task 'to-web' do
     set :views, project_views
 
     get('/') do
-      haml :index, :locals => { :tasks => tasks }
+      haml :task_index, :locals => { :tasks => tasks }
     end
 
     tasks.each do |task|
