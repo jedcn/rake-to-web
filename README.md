@@ -41,6 +41,18 @@ What if when you issued a ```POST /generate/files``` this small web
 application made it so that ```rake generate:files``` was invoked, and
 the results were returned?
 
+What if you started this web application by install the rake-to-web
+gem, then adding the following to a Rakefile:
+
+    require 'rake-to-web'
+
+And this require statement gave your project a new rake task:
+
+    rake to-web
+
+And running this rake task brought the server into existence focused
+on your Rakefile?
+
 ## Introducing rake-to-web
 
 That's what rake-to-web is.
