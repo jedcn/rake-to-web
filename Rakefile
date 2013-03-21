@@ -34,12 +34,3 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
 end
 
 task :default => :spec
-
-namespace :to do
-  desc 'rake-to-web'
-  task :web do
-    require 'sinatra/base'
-    my_app = Sinatra.new { get('/') { "hi" } }
-    my_app.run!
-  end
-end
