@@ -15,6 +15,12 @@ task 'to-web' do
     get('/') do
       haml :index, :locals => { :tasks => tasks }
     end
+
+    tasks.each do |task|
+      get "/#{task.name}" do
+        task.name
+      end
+    end
   end
 
   my_app.run!

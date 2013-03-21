@@ -6,4 +6,5 @@
     %h2 Tasks:
     %ul
       - tasks.each do |task|
-        %li= task.name
+        %li
+          %a{ href: "/#{task.name}" }= task.name
