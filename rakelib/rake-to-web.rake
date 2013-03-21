@@ -18,7 +18,7 @@ task 'to-web' do
 
     tasks.each do |task|
       get "/#{task.name}" do
-        task.name
+        haml :task, :locals => { :task => task }
       end
     end
   end
