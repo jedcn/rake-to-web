@@ -18,6 +18,8 @@ task 'to-web' do
 
   my_app = Sinatra.new do
 
+    set :bind, 'localhost'
+
     set :haml, :format => :html5
 
     set :views, project_views
