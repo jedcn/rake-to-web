@@ -1,3 +1,4 @@
-%h1 rake-to-web
-%h2= "Result of Executing Task: #{task_name}"
-%pre= "#{result}"
+%h2 Result
+%pre= "$ rake #{@task.name}"
+%pre= "$?: #{@result.status}"
+%pre= @result.output
