@@ -6,6 +6,16 @@ task 'to-web' do
   project_root = File.expand_path File.join(__FILE__, '..', '..')
   project_views = File.join project_root, 'views'
 
+  def execute_task(task)
+    require 'ostruct'
+    output = `rake #{task.name}`
+    result = {
+      :output => output,
+      :status => $?
+    }
+    OpenStruct.new result
+  end
+
   my_app = Sinatra.new do
 
     set :haml, :format => :html5
@@ -13,12 +23,21 @@ task 'to-web' do
     set :views, project_views
 
     get('/') do
-      haml :index, :locals => { :tasks => tasks }
+      @tasks = tasks
+      haml :task_index
     end
 
     tasks.each do |task|
+
       get "/#{task.name}" do
-        task.name
+        @tasks, @task = tasks, task
+        haml :task
+      end
+
+      post "/#{task.name}" do
+        @tasks, @task = tasks, task
+        @result = execute_task @task
+        haml :task_result
       end
     end
   end
