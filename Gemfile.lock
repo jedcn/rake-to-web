@@ -14,6 +14,8 @@ GEM
     rack (1.5.2)
     rack-protection (1.4.0)
       rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.0.3)
     rdoc (4.0.0)
       json (~> 1.4)
@@ -38,5 +40,6 @@ DEPENDENCIES
   bundler
   haml
   jeweler
+  rack-test
   rspec
   sinatra
