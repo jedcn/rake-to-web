@@ -20,14 +20,4 @@ class RakeTaskManager
     `rake #{name}`
   end
 
-# def execute_task(task)
-#   require 'ostruct'
-#   output = `rake #{task.name}`
-#   result = {
-#     :output => output,
-#     :status => $?
-#   }
-#   OpenStruct.new result
-# end
-
 end
