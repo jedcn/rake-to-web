@@ -19,7 +19,7 @@ class TaskToWebBuilder
 
       get('/') do
         @tasks = task_manager.tasks
-        haml :task_index
+        haml :index
       end
 
       task_manager.tasks.each do |task|
@@ -32,7 +32,7 @@ class TaskToWebBuilder
         post "/#{task.name}" do
           @tasks, @task = task_manager.tasks, task
           @result = task_manager.run task.name
-          haml :task_result
+          haml :result
         end
       end
     end
