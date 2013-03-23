@@ -33,4 +33,12 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+task :hello_world do
+  puts "HELLO WORLD"
+end
+
+task :goodbye_world do
+  puts "GOODBYE WORLD"
+end
+
 task :default => :spec
