@@ -1,12 +1,17 @@
 require 'spec_helper'
 
-require 'rack/test'
-
 describe TaskToWebBuilder do
 
-  include Rack::Test::Methods
+  describe '.new' do
+    it 'requires a task manager' do
+      simple_task_manager = SimpleTaskManager.new
+      TaskToWebBuilder.new simple_task_manager
+    end
+  end
 
-  describe '.app (when paired with a task manager)' do
+  describe '.app returns an application where:' do
+
+    include Rack::Test::Methods
 
     def app
       simple_task_manager = SimpleTaskManager.new
@@ -14,14 +19,14 @@ describe TaskToWebBuilder do
       builder.app
     end
 
-    it 'GET "/" returns an index that contains links to the tasks from the task manager' do
+    it 'GET "/" returns an index that contains links to tasks' do
       get '/'
       last_response.should be_ok
       last_response.body.should =~ /multiply_4_by_4/
       last_response.body.should =~ /add_4_and_4/
     end
 
-    it 'GET "/task_name" exists for tasks from the task manager' do
+    it 'GET "/task_name" returns a page with a form to execute the task' do
       get '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /form action='\/multiply_4_by_4' method='POST'/
