@@ -31,6 +31,16 @@ describe TaskToWebBuilder do
       last_response.should =~ /form action='\/add_4_and_4' method='POST'/
     end
 
+    it 'POST "/task_name" executes the task and returns the result' do
+      post '/multiply_4_by_4'
+      last_response.should be_ok
+      last_response.should =~ /16/
+
+      post '/add_4_and_4'
+      last_response.should be_ok
+      last_response.should =~ /8/
+    end
+
   end
 
 end
