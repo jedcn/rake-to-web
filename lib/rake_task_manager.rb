@@ -8,6 +8,10 @@ class RakeTaskManager
     @tasks = Rake.application.tasks
   end
 
+  def tasks
+    @tasks
+  end
+
   def names
     @tasks.collect { |task| task.name }
   end
@@ -15,5 +19,15 @@ class RakeTaskManager
   def run(name)
     `rake #{name}`
   end
+
+# def execute_task(task)
+#   require 'ostruct'
+#   output = `rake #{task.name}`
+#   result = {
+#     :output => output,
+#     :status => $?
+#   }
+#   OpenStruct.new result
+# end
 
 end
