@@ -29,7 +29,7 @@ class TaskToWebBuilder
           haml :task
         end
 
-        post "/#{task.name}" do
+        post "/#{task.name}.?:format?" do
           @tasks, @task = task_manager.tasks, task
           @result = task_manager.run task.name
           haml :result
