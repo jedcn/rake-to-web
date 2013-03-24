@@ -9,41 +9,62 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jed Northridge"]
-  s.date = "2013-03-08"
+  s.date = "2013-03-24"
   s.description = "A Web Application that, when started, runs rake -T, and builds routes for each action. POSTing to a route invokes the action."
   s.email = "northridge@gmail.com"
   s.extra_rdoc_files = [
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ]
   s.files = [
     "LICENSE",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "lib/app/views/index.haml",
+    "lib/app/views/layout.haml",
+    "lib/app/views/result.haml",
+    "lib/app/views/task.haml",
     "lib/rake-to-web.rb",
-    "rake-to-web.gemspec"
+    "lib/rake_task_manager.rb",
+    "lib/task_to_web_builder.rb",
+    "rake-to-web.gemspec",
+    "rakelib/rake-to-web.rake"
   ]
   s.homepage = "https://github.com/jedcn/rake-to-web"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "A Web Application that knows how to run your Rakefile"
+  s.summary = "A web application that knows how to run tasks in your Rakefile"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<sinatra>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
+      s.add_runtime_dependency(%q<json>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<rack-test>, [">= 0"])
     else
+      s.add_dependency(%q<sinatra>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 0"])
+      s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<rack-test>, [">= 0"])
     end
   else
+    s.add_dependency(%q<sinatra>, [">= 0"])
+    s.add_dependency(%q<haml>, [">= 0"])
+    s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<rack-test>, [">= 0"])
   end
 end
 
