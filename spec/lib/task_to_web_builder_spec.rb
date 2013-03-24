@@ -64,6 +64,12 @@ describe TaskToWebBuilder do
       last_response.content_type.should =~ /application\/json/
     end
 
+    where 'POST "/task_name" with "Accept: application/json" returns json' do
+      header 'Accept', 'application/json'
+      post '/multiply_4_by_4'
+      last_response.content_type.should =~ /application\/json/
+    end
+
     where 'POST "/task_name.json" executes the task and returns the correct result as json' do
 
       post '/multiply_4_by_4.json'

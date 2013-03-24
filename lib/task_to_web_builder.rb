@@ -33,7 +33,8 @@ class TaskToWebBuilder
         post "/#{task.name}.?:format?" do
           @tasks, @task = task_manager.tasks, task
           @result = task_manager.run task.name
-          if params[:format] == 'json'
+          types = %w[text/html application/json]
+          if params[:format] == 'json' || request.preferred_type(types) == 'application/json'
             content_type :json
             JSON.generate({ :result => @result })
           else
