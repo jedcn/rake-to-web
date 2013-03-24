@@ -34,6 +34,7 @@ class TaskToWebBuilder
           @tasks, @task = task_manager.tasks, task
           @result = task_manager.run task.name
           if params[:format] == 'json'
+            content_type :json
             JSON.generate({ :result => @result })
           else
             haml :result
