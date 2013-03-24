@@ -1,3 +1,6 @@
 %h2= "rake #{@task.name}"
 %form{ :action => "/#{@task.name}", :method => 'POST' }
   %input{ :type => "submit", :value => "Execute" }
+
+%form{ :action => "/#{@task.name}.json", :method => 'POST' }
+  %input{ :type => "submit", :value => "Execute (JSON Response)" }
