@@ -51,6 +51,7 @@ describe TaskToWebBuilder do
 
       post '/multiply_4_by_4.json'
       last_response.should be_ok
+      last_response.content_type.should =~ /application\/json/
       parsed = JSON.parse last_response.body
       parsed['result'].should == 16
 
