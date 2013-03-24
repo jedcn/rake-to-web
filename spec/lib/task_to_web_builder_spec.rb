@@ -19,14 +19,14 @@ describe TaskToWebBuilder do
       builder.app
     end
 
-    it 'GET "/" returns an index that contains links to tasks' do
+    where 'GET "/" returns an index that contains links to tasks' do
       get '/'
       last_response.should be_ok
       last_response.body.should =~ /multiply_4_by_4/
       last_response.body.should =~ /add_4_and_4/
     end
 
-    it 'GET "/task_name" returns a page with a form to execute the task' do
+    where 'GET "/task_name" returns a page with a form to execute the task' do
       get '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /form action='\/multiply_4_by_4' method='POST'/
@@ -36,7 +36,7 @@ describe TaskToWebBuilder do
       last_response.should =~ /form action='\/add_4_and_4' method='POST'/
     end
 
-    it 'POST "/task_name" executes the task and returns the result' do
+    where 'POST "/task_name" executes the task and returns the result' do
       post '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /16/
