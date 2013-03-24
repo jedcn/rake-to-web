@@ -46,6 +46,14 @@ describe TaskToWebBuilder do
       last_response.should =~ /8/
     end
 
+    where 'POST "/task_name.json" executes the task and returns the result as json' do
+      post '/multiply_4_by_4.json'
+      last_response.should be_ok
+
+      post '/add_4_and_4.json'
+      last_response.should be_ok
+    end
+
   end
 
 end
