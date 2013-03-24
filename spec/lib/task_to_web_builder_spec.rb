@@ -19,14 +19,14 @@ describe TaskToWebBuilder do
       builder.app
     end
 
-    it 'GET "/" returns an index that contains links to tasks' do
+    where 'GET "/" returns an index that contains links to tasks' do
       get '/'
       last_response.should be_ok
       last_response.body.should =~ /multiply_4_by_4/
       last_response.body.should =~ /add_4_and_4/
     end
 
-    it 'GET "/task_name" returns a page with a form to execute the task' do
+    where 'GET "/task_name" returns a page with a form to execute the task' do
       get '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /form action='\/multiply_4_by_4' method='POST'/
@@ -36,7 +36,17 @@ describe TaskToWebBuilder do
       last_response.should =~ /form action='\/add_4_and_4' method='POST'/
     end
 
-    it 'POST "/task_name" executes the task and returns the result' do
+    where 'GET "/task_name" returns a page with a form to execute the task and get a JSON response' do
+      get '/multiply_4_by_4'
+      last_response.should be_ok
+      last_response.should =~ /form action='\/multiply_4_by_4.json' method='POST'/
+
+      get '/add_4_and_4'
+      last_response.should be_ok
+      last_response.should =~ /form action='\/add_4_and_4.json' method='POST'/
+    end
+
+    where 'POST "/task_name" executes the task and returns the correct result' do
       post '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /16/
@@ -44,6 +54,31 @@ describe TaskToWebBuilder do
       post '/add_4_and_4'
       last_response.should be_ok
       last_response.should =~ /8/
+    end
+
+    require 'json'
+
+    where 'POST "/task_name.json" executes the task and returns the result as json' do
+      post '/multiply_4_by_4.json'
+      last_response.should be_ok
+      last_response.content_type.should =~ /application\/json/
+    end
+
+    where 'POST "/task_name" with "Accept: application/json" returns json' do
+      header 'Accept', 'application/json'
+      post '/multiply_4_by_4'
+      last_response.content_type.should =~ /application\/json/
+    end
+
+    where 'POST "/task_name.json" executes the task and returns the correct result as json' do
+
+      post '/multiply_4_by_4.json'
+      parsed = JSON.parse last_response.body
+      parsed['result'].should == 16
+
+      post '/add_4_and_4.json'
+      parsed = JSON.parse last_response.body
+      parsed['result'].should == 8
     end
 
   end

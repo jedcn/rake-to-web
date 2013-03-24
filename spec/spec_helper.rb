@@ -9,5 +9,5 @@ require 'rake-to-web'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-
+  config.alias_example_to :where
 end
