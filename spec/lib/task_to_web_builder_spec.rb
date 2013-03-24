@@ -46,7 +46,7 @@ describe TaskToWebBuilder do
       last_response.should =~ /form action='\/add_4_and_4.json' method='POST'/
     end
 
-    where 'POST "/task_name" executes the task and returns the result' do
+    where 'POST "/task_name" executes the task and returns the correct result' do
       post '/multiply_4_by_4'
       last_response.should be_ok
       last_response.should =~ /16/
@@ -56,18 +56,21 @@ describe TaskToWebBuilder do
       last_response.should =~ /8/
     end
 
-    where 'POST "/task_name.json" executes the task and returns the result as json' do
-      require 'json'
+    require 'json'
 
+    where 'POST "/task_name.json" executes the task and returns the result as json' do
       post '/multiply_4_by_4.json'
       last_response.should be_ok
       last_response.content_type.should =~ /application\/json/
+    end
+
+    where 'POST "/task_name.json" executes the task and returns the correct result as json' do
+
+      post '/multiply_4_by_4.json'
       parsed = JSON.parse last_response.body
       parsed['result'].should == 16
 
-
       post '/add_4_and_4.json'
-      last_response.should be_ok
       parsed = JSON.parse last_response.body
       parsed['result'].should == 8
     end
