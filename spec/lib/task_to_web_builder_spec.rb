@@ -36,6 +36,16 @@ describe TaskToWebBuilder do
       last_response.should =~ /form action='\/add_4_and_4' method='POST'/
     end
 
+    where 'GET "/task_name" returns a page with a form to execute the task and get a JSON response' do
+      get '/multiply_4_by_4'
+      last_response.should be_ok
+      last_response.should =~ /form action='\/multiply_4_by_4.json' method='POST'/
+
+      get '/add_4_and_4'
+      last_response.should be_ok
+      last_response.should =~ /form action='\/add_4_and_4.json' method='POST'/
+    end
+
     where 'POST "/task_name" executes the task and returns the result' do
       post '/multiply_4_by_4'
       last_response.should be_ok
