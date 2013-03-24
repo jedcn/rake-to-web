@@ -51,11 +51,14 @@ describe TaskToWebBuilder do
 
       post '/multiply_4_by_4.json'
       last_response.should be_ok
-      result = JSON.parse last_response.body
+      parsed = JSON.parse last_response.body
+      parsed['result'].should == 16
+
 
       post '/add_4_and_4.json'
       last_response.should be_ok
-      result = JSON.parse last_response.body
+      parsed = JSON.parse last_response.body
+      parsed['result'].should == 8
     end
 
   end

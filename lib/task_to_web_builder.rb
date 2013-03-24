@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'json'
 
 class TaskToWebBuilder
 
@@ -32,7 +33,11 @@ class TaskToWebBuilder
         post "/#{task.name}.?:format?" do
           @tasks, @task = task_manager.tasks, task
           @result = task_manager.run task.name
-          haml :result
+          if params[:format] == 'json'
+            JSON.generate({ :result => @result })
+          else
+            haml :result
+          end
         end
       end
     end
