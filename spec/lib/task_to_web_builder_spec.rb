@@ -47,11 +47,15 @@ describe TaskToWebBuilder do
     end
 
     where 'POST "/task_name.json" executes the task and returns the result as json' do
+      require 'json'
+
       post '/multiply_4_by_4.json'
       last_response.should be_ok
+      result = JSON.parse last_response.body
 
       post '/add_4_and_4.json'
       last_response.should be_ok
+      result = JSON.parse last_response.body
     end
 
   end
