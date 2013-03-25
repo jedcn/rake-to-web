@@ -33,6 +33,13 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+task :default => :spec
+
+# Require in rake-to-web's lib directory, so this project can run
+# 'rake to-web'
+require 'rake-to-web'
+
+# Some basic configuration / testing if you run rake to-web locally.
 task :hello_world do
   puts "HELLO WORLD"
 end
@@ -40,5 +47,3 @@ end
 task :goodbye_world do
   puts "GOODBYE WORLD"
 end
-
-task :default => :spec
