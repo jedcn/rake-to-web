@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jed Northridge"]
-  s.date = "2013-03-24"
+  s.date = "2013-03-25"
   s.description = "A Web Application that, when started, runs rake -T, and builds routes for each action. POSTing to a route invokes the action."
   s.email = "northridge@gmail.com"
   s.extra_rdoc_files = [
@@ -28,8 +28,7 @@ Gem::Specification.new do |s|
     "lib/rake-to-web.rb",
     "lib/rake_task_manager.rb",
     "lib/task_to_web_builder.rb",
-    "rake-to-web.gemspec",
-    "rakelib/rake-to-web.rake"
+    "rake-to-web.gemspec"
   ]
   s.homepage = "https://github.com/jedcn/rake-to-web"
   s.licenses = ["MIT"]
