@@ -12,9 +12,9 @@
           %div.well.sidebar-nav
             %ul.nav.nav-list
               %li.nav-header Rake Tasks
-              - @tasks.each do |task|
+              - @task_names.each do |task_name|
                 %li
-                  %a{ :href => "/#{task.name}" }= task.name
+                  %a{ :href => "/#{task_name}" }= task_name
         %div.span9
           .hero-unit
             = yield
