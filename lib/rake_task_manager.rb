@@ -8,10 +8,6 @@ class RakeTaskManager
     @tasks = Rake.application.tasks
   end
 
-  def tasks
-    @tasks
-  end
-
   def names
     @tasks.collect { |task| encode_task_name task.name }
   end
