@@ -13,11 +13,21 @@ class RakeTaskManager
   end
 
   def names
-    @tasks.collect { |task| task.name }
+    @tasks.collect { |task| encode_task_name task.name }
   end
 
   def run(name)
-    `rake #{name}`
+    `rake #{decode_task_name name}`
+  end
+
+  private
+
+  def encode_task_name(name)
+    name.gsub(':', '/')
+  end
+
+  def decode_task_name(name)
+    name.gsub('/', ':')
   end
 
 end

@@ -40,10 +40,12 @@ task :default => :spec
 require 'rake-to-web'
 
 # Some basic configuration / testing if you run rake to-web locally.
-task :hello_world do
-  puts "HELLO WORLD"
-end
+namespace :examples do
+  task :hello_world do
+    puts "HELLO WORLD"
+  end
 
-task :goodbye_world do
-  puts "GOODBYE WORLD"
+  task :goodbye_world do
+    puts "GOODBYE WORLD"
+  end
 end
