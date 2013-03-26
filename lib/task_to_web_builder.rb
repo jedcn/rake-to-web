@@ -9,6 +9,8 @@ class TaskToWebBuilder
 
   def app
     task_manager = @task_manager
+    task_names = task_manager.names
+
     app = Sinatra.new do
 
       set :bind, 'localhost'
@@ -19,20 +21,20 @@ class TaskToWebBuilder
       set :views, File.join(lib, 'app', 'views')
 
       get('/') do
-        @tasks = task_manager.tasks
+        @task_names = task_names
         haml :index
       end
 
-      task_manager.tasks.each do |task|
+      task_names.each do |task_name|
 
-        get "/#{task.name}" do
-          @tasks, @task = task_manager.tasks, task
+        get "/#{task_name}" do
+          @task_names, @task_name = task_names, task_name
           haml :task
         end
 
-        post "/#{task.name}.?:format?" do
-          @tasks, @task = task_manager.tasks, task
-          @result = task_manager.run task.name
+        post "/#{task_name}.?:format?" do
+          @task_names, @task_name = task_names, task_name
+          @result = task_manager.run task_name
           types = %w[text/html application/json]
           if params[:format] == 'json' || request.preferred_type(types) == 'application/json'
             content_type :json

@@ -11,11 +11,4 @@ class SimpleTaskManager
     end
   end
 
-  def tasks
-    require 'ostruct'
-    tasks = []
-    tasks << OpenStruct.new({ :name => 'multiply_4_by_4' })
-    tasks << OpenStruct.new({ :name => 'add_4_and_4' })
-    tasks
-  end
 end
