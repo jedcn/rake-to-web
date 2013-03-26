@@ -10,6 +10,10 @@ class TaskToWebBuilder
   def app
     task_manager = @task_manager
     app = Sinatra.new do
+      tasks = []
+      task_manager.names.each do |name|
+        tasks << OpenStruct.new({ :name => name })
+      end
 
       set :bind, 'localhost'
 
@@ -19,19 +23,19 @@ class TaskToWebBuilder
       set :views, File.join(lib, 'app', 'views')
 
       get('/') do
-        @tasks = task_manager.tasks
+        @tasks = tasks
         haml :index
       end
 
-      task_manager.tasks.each do |task|
+      tasks.each do |task|
 
         get "/#{task.name}" do
-          @tasks, @task = task_manager.tasks, task
+          @tasks, @task = tasks, task
           haml :task
         end
 
         post "/#{task.name}.?:format?" do
-          @tasks, @task = task_manager.tasks, task
+          @tasks, @task = tasks, task
           @result = task_manager.run task.name
           types = %w[text/html application/json]
           if params[:format] == 'json' || request.preferred_type(types) == 'application/json'
