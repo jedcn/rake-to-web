@@ -1,4 +1,5 @@
 require 'rake'
+require 'open3'
 
 class RakeTaskManager
 
@@ -13,7 +14,8 @@ class RakeTaskManager
   end
 
   def run(name)
-    `rake #{decode_task_name name}`
+    run_stderr_stdout, status = Open3.capture2e 'rake', decode_task_name(name)
+    run_stderr_stdout
   end
 
   private
