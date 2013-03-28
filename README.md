@@ -1,8 +1,7 @@
 # rake-to-web
 
-*rake-to-web is a mechanism that can be added to a ruby project with
-an existing Rakefile so that all of the tasks in that Rakefile can be
-invoked via http*
+*rake-to-web can be added to a ruby project with an existing Rakefile
+so that all of the Rake tasks can be invoked via http*
 
 [![Build Status](https://travis-ci.org/jedcn/rake-to-web.png)](https://travis-ci.org/jedcn/rake-to-web)
 
@@ -11,7 +10,7 @@ invoked via http*
 If you've got a Rakefile with tasks that you love, then:
 
 * Add `gem 'rake-to-web'` to your `Gemfile`, and `bundle` (or `gem
-  install rake-to-web`
+  install rake-to-web`)
 
 * Add `require rake-to-web` to your `Rakefile`
 
@@ -28,8 +27,8 @@ might create a rake task to..
   re-execute it.
 * Break a larger task down into distinct tasks, and then be able to
   execute these smaller tasks independently.
-* Possible setup a graph of task dependencies and using the power of
-  Rake ensure that all of the dependencies are completed by issuing a
+* Setup a graph of task dependencies and using the power of Rake
+  ensure that all of the dependencies are completed by issuing a
   single command.
 
 That said, most Rakers can figure out what tasks are available in a
@@ -43,11 +42,11 @@ And then a Raker could execute any one of these tasks by running
 
 ## What if..
 
-What there was a small web application that, at start up, did the
+What if there was a small web application that, at start up, did the
 equivalent of running a `rake -T` and built http routes for every
 task?
 
-What this web application responded to `GET /` by showing an index
+What if this web application responded to `GET /` by showing an index
 page of all of these tasks?
 
 What if, when you had a task named `generate:files`, this web
@@ -74,12 +73,24 @@ interact with this web app and it was all about your Rakefile?
 
 That's what rake-to-web is.
 
-This is probably crazy.
+I'm not sure how useful this is.
 
-This is crazy if your tasks are not small and do not return quickly.
+But, it might be helpful if you wanted to provide easy web access to a
+few rake tasks, potentially made just for this purpose, so that
+invoking the tasks became easy enough that anyone with a web access
+could do it, say, you know, like, a
+[hubot][https://github.com/github/hubot].
 
-This is crazy if your tasks are not properly thought out with regard
-to security.
+## Status
 
-But, it might be helpful if you want to provide easy web access to a
-few rake tasks made just for this purpose.
+This is a small project that I'll be actively working on for the next
+few weeks.
+
+If you're using bundler, you can reference it via a "git" reference
+now.
+
+And I will release it once we:
+
+* Make it so that you can easily configure which tasks are included
+  for invocation (right now it displays everything, and that seems
+  to be too much).
